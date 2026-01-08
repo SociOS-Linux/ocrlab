@@ -14,3 +14,7 @@
 
 			ocr-shell:
     			./scripts/ocr_shell.sh
+
+.PHONY: validate
+validate:
+	./tools/validate.sh
