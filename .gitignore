@@ -4,3 +4,9 @@ __pycache__/
 *.pyo
 *.bak
 scratch/
+
+Makefile.bak.*
+*.bak
+__pycache__/
+*.pyc
+scratch/
