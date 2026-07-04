@@ -1,20 +1,10 @@
-			.PHONY: ocr-bootstrap ocr-rebuild ocr-verify ocr-smoketest ocr-shell
+.PHONY: validate smoke carry
 
-			ocr-bootstrap:
-    			./scripts/bootstrap_brew_ocr.sh
-
-			ocr-rebuild:
-    			./scripts/rebuild_ocr_env.sh
-
-			ocr-verify:
-    			./scripts/verify_ocr_env.sh
-
-			ocr-smoketest:
-    			source .venv-ocr/bin/activate && ./scripts/smoketest_ocr.sh
-
-			ocr-shell:
-    			./scripts/ocr_shell.sh
-
-.PHONY: validate
 validate:
-	./tools/validate.sh
+	python3 tools/validate.py
+
+smoke:
+	python3 tools/smoke.py
+
+carry:
+	python3 tools/emit_sourceos_carry.py > examples/sourceos-carry.ocrlab.json
