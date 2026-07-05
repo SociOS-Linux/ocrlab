@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "functional-service.v1",
+  "service": {
+    "id": "ocrlab.holmes.ocr-pilot",
+    "name": "OCRLab Holmes OCR Pilot",
+    "ownerRepository": "SociOS-Linux/ocrlab",
+    "status": "experimental",
+    "description": "Offline deterministic ocr functional surface emitted by ocrlab for governed promotion."
+  },
+  "function": "not-a-real-function",
+  "model": {
+    "modelRef": "urn:socioprophet:functional-model:ocrlab:deterministic-ocr:v0",
+    "adapterRefs": [],
+    "runtime": "python-stdlib-offline-smoke",
+    "mutableStatePolicy": "forbidden-in-sourceos"
+  },
+  "inputs": [
+    "image/document",
+    "text/corpus"
+  ],
+  "outputs": [
+    "ocr/features",
+    "ranking/candidates",
+    "evidence/smoke-receipt"
+  ],
+  "evals": {
+    "required": true,
+    "references": [
+      "examples/smoke-input.json",
+      "examples/smoke-output.json",
+      "evidence/smoke-receipt.example.json"
+    ],
+    "minimumPromotionGate": "candidate requires signed eval and dataset provenance"
+  },
+  "governance": {
+    "ledgerRequired": true,
+    "guardrailRequired": true,
+    "routingRequired": true,
+    "policyRefs": [
+      "SocioProphet/model-governance-ledger",
+      "SocioProphet/guardrail-fabric",
+      "SocioProphet/model-router",
+      "SocioProphet/holmes"
+    ]
+  },
+  "sourceosCarry": {
+    "allowed": true,
+    "carriesMutableModelState": false,
+    "clientRefRequired": true,
+    "launchProfileRefs": [
+      "urn:srcos:model-carry:functional-service:ocrlab-holmes-pilot"
+    ]
+  }
+}
